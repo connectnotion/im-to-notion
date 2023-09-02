@@ -45,7 +45,7 @@ func (a *App) Init() {
 }
 
 func (a *App) WaitForSignal() {
-	stopC := make(chan os.Signal)
+	stopC := make(chan os.Signal, 1)
 	signal.Notify(stopC, syscall.SIGINT, syscall.SIGTERM)
 	<-stopC
 }

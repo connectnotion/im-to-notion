@@ -42,6 +42,6 @@ type Logger struct {
 }
 
 func (l *Logger) Warningf(format string, args ...interface{}) {
-	msg := fmt.Sprintf(format, args)
+	msg := fmt.Sprintf(format, args...)
 	l.Warn(msg)
 }
