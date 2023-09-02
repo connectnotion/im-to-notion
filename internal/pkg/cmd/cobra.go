@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/api7/gopkg/pkg/log"
+	dingtalklogger "github.com/open-dingtalk/dingtalk-stream-sdk-go/logger"
 
 	"github.com/ronething/im-to-notion/internal/pkg/config"
 )
@@ -31,5 +32,16 @@ func SetDefaultLogger(cfg config.LogOptions) error {
 		return err
 	}
 	log.DefaultLogger = logger
+	dl := Logger{logger}
+	dingtalklogger.SetLogger(&dl)
 	return nil
+}
+
+type Logger struct {
+	*log.Logger
+}
+
+func (l *Logger) Warningf(format string, args ...interface{}) {
+	msg := fmt.Sprintf(format, args)
+	l.Warn(msg)
 }

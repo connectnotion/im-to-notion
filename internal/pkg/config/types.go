@@ -19,12 +19,13 @@ type Dingtalk struct {
 
 // Source from im
 type Source struct {
-	Dingtalk Dingtalk `json:"dingtalk" yaml:"dingtalk"`
+	Dingtalk *Dingtalk `json:"dingtalk,omitempty" yaml:"dingtalk,omitempty"`
 }
 
 // Notion config
 type Notion struct {
-	Secret string `json:"secret" yaml:"secret"`
+	Secret     string `json:"secret" yaml:"secret"`
+	DatabaseId string `json:"databaseId" yaml:"databaseId"`
 }
 
 // Destination send to

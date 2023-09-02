@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/viper"
 	"go.uber.org/zap"
 
+	"github.com/ronething/im-to-notion/internal/pkg/app"
 	internalcmd "github.com/ronething/im-to-notion/internal/pkg/cmd"
 	"github.com/ronething/im-to-notion/internal/pkg/config"
 	"github.com/ronething/im-to-notion/internal/version"
@@ -42,12 +43,15 @@ func newCommand() *cobra.Command {
 				internalcmd.Dief(err.Error())
 			}
 
-			log.Infow("config is",
+			log.Debugw("config is",
 				zap.Any("log", viper.Get("log")),
 				zap.Any("source", viper.Get("source")),
 				zap.Any("destination", viper.Get("destination")),
 			)
 
+			myapp := app.NewApp()
+			myapp.Init()
+			myapp.WaitForSignal()
 		},
 	}
 
