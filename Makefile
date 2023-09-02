@@ -36,3 +36,11 @@ lint: ## Apply go lint check
 	@golangci-lint run --timeout 10m ./...
 .PHONY: lint
 
+set-e2e-goos:
+	$(eval GOOS=linux)
+	@echo "e2e GOOS: $(GOOS)"
+.PHONY: set-e2e-goos
+
+build-docker-image: set-e2e-goos build
+	@docker build -f build/Dockerfile -t ronething/im-to-notion:dev .
+.PHONY: build-docker-image
