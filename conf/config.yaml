@@ -1,0 +1,12 @@
+log:
+  level: info
+  output: stderr
+
+source:
+  dingtalk:
+    appKey: xxx
+    appSecret: xxx
+
+destination:
+  notion:
+    secret: xxx
