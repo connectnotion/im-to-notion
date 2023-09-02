@@ -4,6 +4,9 @@ go 1.21
 
 require (
 	github.com/api7/gopkg v0.2.0
+	github.com/jomei/notionapi v1.12.8
+	github.com/open-dingtalk/dingtalk-stream-sdk-go v0.4.0
+	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/viper v1.16.0
 	go.uber.org/zap v1.21.0
@@ -11,6 +14,8 @@ require (
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
+	github.com/google/uuid v1.3.0 // indirect
+	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect

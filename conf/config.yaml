@@ -1,6 +1,6 @@
 log:
   level: info
-  output: stderr
+  output: stdout
 
 source:
   dingtalk:
@@ -10,3 +10,4 @@ source:
 destination:
   notion:
     secret: xxx
+    databaseId: xxx
