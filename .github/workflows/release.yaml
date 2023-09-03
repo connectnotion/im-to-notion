@@ -2,11 +2,14 @@ name: Build Image On Commit
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
   pull_request:
     branches:
       - main
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   packages: write
   contents: read
@@ -45,10 +48,13 @@ jobs:
         env:
           NAMESPACE: ${{ github.repository_owner }}
           IMAGE_NAME: im-to-notion
-          VERSION: dev
         run: |
           IMAGE_ID=ghcr.io/$NAMESPACE/$IMAGE_NAME
           
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          
           echo IMAGE_ID=$IMAGE_ID
-          docker tag $IMAGE_NAME:$VERSION $IMAGE_ID:$VERSION
+          echo VERSION=$VERSION
+          docker tag $IMAGE_NAME:dev $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
