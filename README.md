@@ -3,7 +3,10 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [im-to-notion](#im-to-notion)
-  - [docker run](#docker-run)
+  - [set config file](#set-config-file)
+  - [build image on local](#build-image-on-local)
+  - [use release image](#use-release-image)
+- [Acknowledgement](#acknowledgement)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -11,8 +14,42 @@
 
 send msg to notion through im.
 
-## docker run
+## set config file
+
+```yaml
+log:
+  level: info
+  output: stdout
+
+source:
+  dingtalk:
+    appKey: xxx
+    appSecret: xxx
+
+destination:
+  notion:
+    secret: xxx
+    databaseId: xxx
+```
+
+## build image on local
 
 ```shell
-docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion ronething/im-to-notion:dev -c /usr/local/im-to-notion/conf/config.yaml
+make build-docker-image
 ```
+
+```shell
+docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion im-to-notion:dev -c /usr/local/im-to-notion/conf/config.yaml
+```
+
+## use release image
+
+```shell
+docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion docker pull ghcr.io/ronething/im-to-notion:0.0.1 -c /usr/local/im-to-notion/conf/config.yaml
+```
+
+# Acknowledgement
+
+- dingtalk
+- notion
+- opensource project in [go.mod](./go.mod)
