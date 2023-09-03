@@ -35,10 +35,11 @@ jobs:
               - 'pkg/**'
               - 'internal/**'
   push:
-    needs: changes
-    if: |
-      (needs.changes.outputs.src == 'true')
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: filter
+    if: |
+      (needs.filter.outputs.src == 'true')
     permissions:
       packages: write
       contents: read
