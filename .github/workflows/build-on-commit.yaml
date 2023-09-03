@@ -1,0 +1,82 @@
+name: Build Image On Commit
+
+on:
+  push:
+    branches:
+      - main
+permissions: read-all
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      src: ${{ steps.filter.outputs.src }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filters: |
+            src:
+              - '*.go'
+              - '**/*.go'
+              - '**/*.yaml'
+              - 'go.mod'
+              - 'go.sum'
+              - 'Makefile'
+              - 'build/**'
+              - 'conf/**'
+              - '.github/**'
+              - 'scripts/**'
+              - 'pkg/**'
+              - 'internal/**'
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: filter
+    if: |
+      (needs.filter.outputs.src == 'true')
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Setup Go Environment
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.21.0'
+
+      - name: Login to Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build image
+        run: |
+          make build-docker-image
+
+      - name: Push image
+        env:
+          NAMESPACE: ${{ github.repository_owner }}
+          IMAGE_NAME: im-to-notion
+          VERSION: dev
+        run: |
+          IMAGE_ID=ghcr.io/$NAMESPACE/$IMAGE_NAME
+          
+          echo IMAGE_ID=$IMAGE_ID
+          docker tag $IMAGE_NAME:$VERSION $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID:$VERSION

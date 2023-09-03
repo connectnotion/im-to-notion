@@ -42,5 +42,5 @@ set-e2e-goos:
 .PHONY: set-e2e-goos
 
 build-docker-image: set-e2e-goos build
-	@docker build -f build/Dockerfile -t ronething/im-to-notion:dev .
+	@docker build -f build/Dockerfile -t im-to-notion:dev .
 .PHONY: build-docker-image
