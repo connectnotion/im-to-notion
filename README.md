@@ -6,6 +6,7 @@
   - [set config file](#set-config-file)
   - [build image on local](#build-image-on-local)
   - [use release image](#use-release-image)
+- [Acknowledgement](#acknowledgement)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -46,3 +47,9 @@ docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion i
 ```shell
 docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion docker pull ghcr.io/ronething/im-to-notion:0.0.1 -c /usr/local/im-to-notion/conf/config.yaml
 ```
+
+# Acknowledgement
+
+- dingtalk
+- notion
+- opensource project in [go.mod](./go.mod)
