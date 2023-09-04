@@ -48,6 +48,10 @@ docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion i
 docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion docker pull ghcr.io/ronething/im-to-notion:0.0.1 -c /usr/local/im-to-notion/conf/config.yaml
 ```
 
+# Buy me a coffee
+
+<img src="https://github.com/ronething/ronething/blob/master/images/wechat.jpg?raw=true" alt="wechat" style="zoom:33%;" />
+
 # Acknowledgement
 
 - dingtalk
