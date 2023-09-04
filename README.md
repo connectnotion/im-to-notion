@@ -7,6 +7,7 @@
   - [build image on local](#build-image-on-local)
   - [use release image](#use-release-image)
 - [Acknowledgement](#acknowledgement)
+- [Buy me a coffee](#buy-me-a-coffee)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
