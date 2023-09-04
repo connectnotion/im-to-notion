@@ -7,6 +7,7 @@
   - [build image on local](#build-image-on-local)
   - [use release image](#use-release-image)
 - [Acknowledgement](#acknowledgement)
+- [Buy me a coffee](#buy-me-a-coffee)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -53,3 +54,8 @@ docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion d
 - dingtalk
 - notion
 - opensource project in [go.mod](./go.mod)
+
+# Buy me a coffee
+
+<img src="https://github.com/ronething/ronething/blob/master/images/wechat.jpg?raw=true" alt="wechat" width="300px" />
+
