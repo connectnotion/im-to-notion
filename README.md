@@ -50,7 +50,7 @@ docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion d
 
 # Buy me a coffee
 
-<img src="https://github.com/ronething/ronething/blob/master/images/wechat.jpg?raw=true" alt="wechat" style="zoom:33%;" />
+<img src="https://github.com/ronething/ronething/blob/master/images/wechat.jpg?raw=true" alt="wechat" width="300px" />
 
 # Acknowledgement
 
