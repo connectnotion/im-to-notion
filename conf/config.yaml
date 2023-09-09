@@ -4,10 +4,10 @@ log:
 
 source:
   dingtalk:
-    appKey: xxx
-    appSecret: xxx
+    appKey:
+    appSecret:
 
 destination:
   notion:
-    secret: xxx
-    databaseId: xxx
+    secret:
+    databaseId:

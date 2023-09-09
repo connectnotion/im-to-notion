@@ -22,6 +22,7 @@ func NewApp() *App {
 }
 
 func (a *App) Init() {
+	// TODO: move to APP fields
 	var (
 		source      config.Source
 		destination config.Destination
@@ -29,8 +30,14 @@ func (a *App) Init() {
 	if err := viper.UnmarshalKey("source", &source); err != nil {
 		internalcmd.Dief(err.Error())
 	}
+	if !source.Validate() {
+		internalcmd.Dief("source config validate err, please check config")
+	}
 	if err := viper.UnmarshalKey("destination", &destination); err != nil {
 		internalcmd.Dief(err.Error())
+	}
+	if !destination.Validate() {
+		internalcmd.Dief("destination config validate err, please check config")
 	}
 
 	n := notion.NewNotion(destination.Notion.Secret, destination.Notion.DatabaseId)

@@ -35,6 +35,11 @@ func newCommand() *cobra.Command {
 				internalcmd.Dief(err.Error())
 			}
 
+			// set config value env
+			if err := config.SetValueFromEnv(); err != nil {
+				internalcmd.Dief(err.Error())
+			}
+
 			logOptions := config.LogOptions{}
 			if err := viper.UnmarshalKey("log", &logOptions); err != nil {
 				internalcmd.Dief(err.Error())
