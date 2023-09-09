@@ -56,13 +56,13 @@ docker run -itd \
  -e DINGTALK_APP_SECRET=${DINGTALK_APP_SECRET} \
  -e NOTION_SECRET=${NOTION_SECRET} \
  -e NOTION_DATABASE_ID=${NOTION_DATABASE_ID} \
- --name im-to-notion ghcr.io/ronething/im-to-notion:0.0.1
+ --name im-to-notion ghcr.io/ronething/im-to-notion:0.0.2
 ```
 
 - use config file
 
 ```shell
-docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion ghcr.io/ronething/im-to-notion:0.0.1 -c /usr/local/im-to-notion/conf/config.yaml
+docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion ghcr.io/ronething/im-to-notion:0.0.2 -c /usr/local/im-to-notion/conf/config.yaml
 ```
 
 # Acknowledgement
