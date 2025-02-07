@@ -70,8 +70,3 @@ docker run -itd -v `pwd`/conf:/usr/local/im-to-notion/conf --name im-to-notion g
 - dingtalk
 - notion
 - opensource project in [go.mod](./go.mod)
-
-# Buy me a coffee
-
-<img src="https://github.com/ronething/ronething/blob/master/images/wechat.jpg?raw=true" alt="wechat" width="300px" />
-
